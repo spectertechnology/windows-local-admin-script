@@ -1,6 +1,6 @@
-﻿$Program_Version = "0.1.0"
+﻿$Program_Version = "0.1.1"
 $Program_Name = "Specter Tech's Local Admin Creator"
-$Username = "Admin.Local"
+$Username = "local.admin"
 
 Clear-Host
 Write-Output "=========================================================="
@@ -28,7 +28,7 @@ $group = "Administrators"
 $adsi = [ADSI]"WinNT://$env:COMPUTERNAME"
 $existing = $adsi.Children | Where-Object {$_.SchemaClassName -eq 'user' -and $_.Name -eq $Username }
 
-if ($existing -eq $null) {
+if ($null -eq $existing) {
 
     Write-Host "Creating new local user $Username."
     & NET USER $Username $Password /add /y /expires:never
